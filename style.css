@@ -1,0 +1,110 @@
+/* глобальные переменные */
+:root {
+    --light: #F5F5F5;
+    --dark: #212121;
+    --brown: #372F25;
+    --red: #FD3E3E;
+    --orange: #FFAA48;
+    --green: #27C86D;
+}
+
+/* задаем размеры не контента, а блока, в котором он находится*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/*настройки всей страницы - отступ, фон и текст */
+body {
+    margin:0;
+    background-color: var(--dark);
+    color: var(--light);
+    font-family: Helvetica, Arial, sans-serif;
+}
+/* общие настройки приложения */
+.app {
+/* выравние по центру, включаем сетку и распологаем элементы на всю высоту окна */
+    text-align: center;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+/* гибкая верстка в контейнерах */
+.metric-group {
+    display: flex;
+}
+/* Общие настройки каждого кругляша с результатами */
+.metric {
+    margin: 10px;
+    max-width: 90px;
+    display: grid;
+    gap: 16px;
+    place-items: center;
+}
+.metric .label {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+/* настройки круговой диаграммы */
+.circle-chart {
+/* используем выбранный цвет */
+    --selected-color: var(--green);
+    color: var(--selected-color);
+/* ширина диаграммы */
+    width: 100px;
+    display: grid;
+    place-items: center;
+}
+/* настраиваем порядок вывода результатов */
+.circle-chart > * {
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+}
+
+/* настраиваем фон кругляша */
+.circle-chart .circle-bg {
+    fill: var(--brown);
+    stroke: var(--brown);
+/* толщина границы */
+    stroke-width: 2.8;
+}
+
+/* анимация заполнения кругляшей */
+.circle-chart .circle {
+    fill: none;
+    stroke: var(--selected-color);
+    stroke-width: 2.8;
+    stroke-linecap: round;
+/*    вид и направление анимации */
+    animation: progress 1.2s ease-in-out forwards;
+}
+/* настройки внутреннего текста с процентами */
+.circle-chart .percentage {
+    font-family: Monaco, monospace;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+/* настройки блока редактирования параметров */
+.app-editor {
+/*    элементы по вертикальной оси */
+    align-self: end;
+/*    отступы между ними*/
+    margin-bottom: 50px;
+}
+/* раскадровка анимации */
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+input {
+    font-size: 1.2rem;
+    font-weight: 700;
+/* внутренний отступ */
+    padding: 14px;
+    background-color: var(--brown);
+    color: var(--light);
+    border: none;
+    margin: 5px 2px;
+    text-align: center;
+}
